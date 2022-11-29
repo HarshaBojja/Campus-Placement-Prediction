@@ -9,12 +9,9 @@ app = Flask(__name__, template_folder='template')
 model_name = open('svm_model.pkl','rb')
 svm_model=pickle.load(model_name)
 
-
 @app.route('/')
 def home():
     return render_template("home.html")
-
-
 
 @app.route('/send', methods=['GET','POST'])
 def predict():
@@ -31,13 +28,10 @@ def predict():
         specialisation = request.form['specialisation1']
         mba_p = request.form['mba_p']
        
-        
         if Gender == 'M':
             gender = 0
         else:
             gender = 1
-    
-        
         if degree_t == 'Sci&Tech':
             degree_t1 = 2
         elif degree_t == 'Comm&Mgmt':
@@ -72,9 +66,6 @@ def predict():
             return render_template('show.html',res=" Chances are less") 
         else:
             return render_template('show.html',res=" You can Get placements")
-
-    
-
 
 if __name__ == '__main__':
     #app.debug = True
